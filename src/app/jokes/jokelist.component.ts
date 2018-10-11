@@ -3,8 +3,8 @@ import { JokeService } from '../services/joke.service';
 
 @Component({
   selector: 'app-jokelist',
-  templateUrl: './jokes.component.html',
-  styleUrls: ['./jokes.component.css'],
+  templateUrl: './jokelist.component.html',
+  styleUrls: ['./jokelist.component.css'],
 })
 export class JokeListComponent implements OnInit {
 

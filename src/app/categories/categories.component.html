@@ -1,19 +1,27 @@
-<h2>Categories</h2>
+<!--<h2>Categories</h2>-->
 
-<nav>
-  <button
-  *ngFor='let category of categories'
-  [class.selected]="category === selectedCategory"
-  (click)="onSelect(category)">
+<ngb-tabset class="nav nav-tabs" (tabChange)="onSelect($event)">
+  <ng-container *ngFor='let category of categories'>
+    <ng-container *ngIf="jokeService.fetchedJokes[category]">
+        <ngb-tab
+        [class.selected]="category === selectedCategory"
+        (click)="onSelect(category)"
+        title="{{category}} {{jokeService.fetchedJokes[category].likeCount}}"
+        id="{{category}}">
+      
+        </ngb-tab>
+    </ng-container>
+    <ng-container *ngIf="!jokeService.fetchedJokes[category]">
 
-    {{category}}
-    <div *ngIf="jokeService.fetchedJokes[category]">
-      {{jokeService.fetchedJokes[category].likeCount}}
-    </div>
-    
-    <div *ngIf="!jokeService.fetchedJokes[category]">0</div>
+        <ngb-tab
+        [class.selected]="category === selectedCategory"
+        (click)="onSelect(category)"
+        title="{{category}} 0"
+        id="{{category}}">
 
-  </button>
-</nav>
+        </ngb-tab>
+    </ng-container>
+  </ng-container>
+</ngb-tabset>
 
 <app-jokelist [category]="selectedCategory"></app-jokelist>

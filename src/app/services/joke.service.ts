@@ -108,4 +108,5 @@ export class JokeService {
   private resetLikeCount(category : string) : void {
     this.fetchedJokes[category].likeCount = 0;
   }
+  
 }

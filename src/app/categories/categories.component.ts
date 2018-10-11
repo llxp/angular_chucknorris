@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CategoriesService } from '../services/categories.service';
 import { LoggingService } from '../services/logging.service';
 import { JokeService } from '../services/joke.service';
+import { NgbTabChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-categories',
@@ -19,12 +20,19 @@ export class CategoriesComponent implements OnInit {
 
   public ngOnInit() {
     this.categoriesService.getCategories()
-    .subscribe(categories => this.categories = categories);
+    .subscribe(categories => this.setCategories(categories));
   }
 
-  public onSelect(category : string): void {
-    this.selectedCategory = category;
-    this.jokeService.getJokes(category);
+  private setCategories(categories : string[]) {
+    this.categories = categories;
+    this.selectedCategory = categories[0];
+    this.jokeService.getJokes(categories[0]);
+  }
+
+  public onSelect($event : NgbTabChangeEvent): void {
+    console.log($event);
+    this.selectedCategory = $event.nextId;
+    this.jokeService.getJokes($event.nextId);
   }
 
 }

@@ -8,11 +8,12 @@ import { JokeService } from '../services/joke.service';
 })
 export class JokeListComponent implements OnInit {
 
-  @Input() category: string;
+  @Input()
+  public category: string;
   
-  constructor(private jokeService : JokeService) { }
+  public constructor(private jokeService : JokeService) { }
 
-  ngOnInit() {
+  public ngOnInit() {
   }
 
 }

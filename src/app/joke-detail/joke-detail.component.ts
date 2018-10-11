@@ -10,7 +10,7 @@ import { JokeService } from '../services/joke.service';
 export class JokeDetailComponent implements OnInit {
 
   @Input()
-  joke : JokeContainer;
+  public joke : JokeContainer;
 
   public constructor(private jokeService : JokeService) { }
 

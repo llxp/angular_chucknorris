@@ -10,17 +10,17 @@ import { JokeService } from '../services/joke.service';
 })
 export class CategoriesComponent implements OnInit {
 
-  categories : string[] = [];
-  selectedCategory : string;
+  private categories : string[] = [];
+  private selectedCategory : string;
 
-  constructor(private categoriesService : CategoriesService, private jokeService : JokeService, private logging : LoggingService) { }
+  public constructor(private categoriesService : CategoriesService, private jokeService : JokeService, private logging : LoggingService) { }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.categoriesService.getCategories()
     .subscribe(categories => this.categories = categories);
   }
 
-  onSelect(category : string): void {
+  public onSelect(category : string): void {
     this.selectedCategory = category;
     this.jokeService.getJokes(category);
   }

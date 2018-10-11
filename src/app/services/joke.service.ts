@@ -7,6 +7,7 @@ import { LoggingService } from './logging.service';
 import { JokeContainer } from '../jokecontainer';
 import { Dictionary } from '../Dictionary';
 import { CategoryContainer } from '../CategoryContainer';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -16,12 +17,10 @@ export class JokeService {
   public endOfFetchReached : Subject<string> = new Subject<string>();
   public fetchedJokes : Dictionary<CategoryContainer> = new Dictionary<CategoryContainer>();
 
-  private jokesUrl : string = "https://api.chucknorris.io/jokes/random?category=";
-
   public constructor(private http: HttpClient, private logging : LoggingService) { }
 
   private getJoke(category : string) : Observable<Joke> {
-    return this.http.get<Joke>(this.jokesUrl + category)
+    return this.http.get<Joke>(environment.jokesUrl + category)
     .pipe(
       tap(heroes => this.logging.log('fetched jokes')),
       catchError(this.logging.handleError<Joke>('getJoke'))

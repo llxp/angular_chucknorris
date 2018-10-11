@@ -6,9 +6,9 @@ import { Observable, of } from 'rxjs';
 })
 export class LoggingService {
 
-  constructor() { }
+  public constructor() { }
 
-  /** Log a HeroService message with the MessageService */
+  // Log a HeroService message with the MessageService
   public log(message: string) {
     console.log(message);
   }

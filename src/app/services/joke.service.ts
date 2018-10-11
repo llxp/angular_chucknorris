@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Joke } from '../JokeModel';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, map, tap } from 'rxjs/operators';
-import { Observable, of, AsyncSubject, forkJoin, Subject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { catchError, tap } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
 import { LoggingService } from './logging.service';
 import { JokeContainer } from '../jokecontainer';
 import { Dictionary } from '../Dictionary';
@@ -17,7 +17,9 @@ export class JokeService {
   public endOfFetchReached : Subject<string> = new Subject<string>();
   public fetchedJokes : Dictionary<CategoryContainer> = new Dictionary<CategoryContainer>();
 
-  public constructor(private http: HttpClient, private logging : LoggingService) { }
+  public constructor(
+    private http: HttpClient,
+    private logging : LoggingService) { }
 
   private getJoke(category : string) : Observable<Joke> {
     return this.http.get<Joke>(environment.jokesUrl + category)
@@ -40,6 +42,7 @@ export class JokeService {
 
   private getSingleJoke(category : string, currentTryLimit : number) : void {
     if(currentTryLimit < 10) {
+      // fetch a joke
       this.getJoke(category).subscribe(joke => this.addJokeToStore(joke, category, currentTryLimit));
     } else {
       // signal, that the current category has no more jokes available
@@ -47,12 +50,16 @@ export class JokeService {
     }
   }
 
+  // check if a category was created, if not, create an empty one
   private createEmptyCategory(categoryStr : string) : void {
     if(!this.fetchedJokes[categoryStr]) {
       this.fetchedJokes[categoryStr] = new CategoryContainer({category:categoryStr, maxJokeCount:3, likeCount:0});
     }
   }
 
+  // function to check,
+  // if the fetched jokes
+  // match the current set limit of maximum jokes
   private checkMaxJokes(category : string) : boolean {
     if (this.fetchedJokes[category]) {
       const jokesLength = this.fetchedJokes[category].jokes.length;

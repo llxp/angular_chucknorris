@@ -14,7 +14,8 @@ export class FetchMoreComponent implements OnInit {
   @Input()
   public category : string;
 
-  public constructor(private jokeService : JokeService) { }
+  public constructor(
+    private jokeService : JokeService) { }
 
   public ngOnInit() {
     this.jokeService.endOfFetchReached.subscribe(
@@ -22,7 +23,7 @@ export class FetchMoreComponent implements OnInit {
   }
 
   public onClick() : void {
-    console.log("fetching more jokes...");
+    // increase maximum of fetchable jokes by 3
     this.jokeService.fetchedJokes[this.category].maxJokeCount += 3;
     this.jokeService.getJokes(this.category);
   }

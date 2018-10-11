@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, map, tap } from 'rxjs/operators';
-import { Observable, of, AsyncSubject, forkJoin } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { catchError, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { LoggingService } from './logging.service';
 import { environment } from 'src/environments/environment';
 
@@ -10,7 +10,9 @@ import { environment } from 'src/environments/environment';
 })
 export class CategoriesService {
 
-  public constructor(private http: HttpClient, private logging : LoggingService) { }
+  public constructor(
+    private http: HttpClient,
+    private logging : LoggingService) { }
 
   public getCategories() : Observable<string[]> {
     return this.http.get<string[]>(environment.categoriesUrl)

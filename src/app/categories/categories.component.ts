@@ -13,7 +13,9 @@ export class CategoriesComponent implements OnInit {
   private categories : string[] = [];
   private selectedCategory : string;
 
-  public constructor(private categoriesService : CategoriesService, private jokeService : JokeService, private logging : LoggingService) { }
+  public constructor(
+    private categoriesService : CategoriesService,
+    private jokeService : JokeService) { }
 
   public ngOnInit() {
     this.categoriesService.getCategories()

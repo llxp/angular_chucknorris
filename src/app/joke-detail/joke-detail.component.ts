@@ -12,7 +12,8 @@ export class JokeDetailComponent implements OnInit {
   @Input()
   public joke : JokeContainer;
 
-  public constructor(private jokeService : JokeService) { }
+  public constructor(
+    private jokeService : JokeService) { }
 
   public ngOnInit() {
   }

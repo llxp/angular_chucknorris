@@ -11,7 +11,8 @@ export class JokeListComponent implements OnInit {
   @Input()
   public category: string;
   
-  public constructor(private jokeService : JokeService) { }
+  public constructor(
+    private jokeService : JokeService) { }
 
   public ngOnInit() {
   }

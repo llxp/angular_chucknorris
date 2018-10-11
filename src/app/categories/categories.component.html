@@ -1,0 +1,7 @@
+<h2>Categories</h2>
+<nav>
+  <button *ngFor='let category of categories'
+  [class.selected]="category === selectedCategory"
+    (click)="onSelect(category)"> {{category}} <div *ngIf="jokeService.fetchedJokes[category]">{{jokeService.fetchedJokes[category].likeCount}}</div><div *ngIf="!jokeService.fetchedJokes[category]">0</div></button>
+</nav>
+<app-jokes [category]="selectedCategory"></app-jokes>

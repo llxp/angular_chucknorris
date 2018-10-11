@@ -1,0 +1,13 @@
+.btn-primary {
+    background-color: #000;
+    color: #fff;
+}
+
+/*.btn-primary:not(:disabled):not(.disabled).active, .show > .btn-primary.dropdown-toggle {
+    background-color: rgb(255, 0, 0);
+    color: #000;
+}*/
+.detail {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

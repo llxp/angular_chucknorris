@@ -1,5 +1,6 @@
 <div class="detail">
-    <hr/>
+  <hr/>
+
   <img src='{{joke.joke.icon_url}}'/>
   <p>{{joke.joke.value}}</p>
   <div class="btn-group btn-group-toggle">
@@ -7,5 +8,6 @@
       <input type="checkbox" [(ngModel)]="joke.like" (change)="onChange($event)" ngbButton> Like
     </label>
   </div>
+  
   <hr/>
 </div>

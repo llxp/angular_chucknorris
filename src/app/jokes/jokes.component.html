@@ -1,4 +1,4 @@
-<h2>Jokes : {{category}}</h2>
+<h2>Category : {{category}}</h2>
 <div *ngIf="jokeService.fetchedJokes[category]">
   <div *ngFor="let joke of jokeService.fetchedJokes[category].jokes">
     <app-joke-detail [joke]="joke"></app-joke-detail>

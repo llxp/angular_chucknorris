@@ -21,7 +21,6 @@ export class CategoriesComponent implements OnInit {
   }
 
   onSelect(category : string): void {
-    console.log(category);
     this.selectedCategory = category;
     this.jokeService.getJokes(category);
   }

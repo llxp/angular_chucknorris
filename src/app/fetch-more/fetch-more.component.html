@@ -1,2 +1,7 @@
-<button ngbButton (click)="onClick()" type="button" class="btn btn-primary">Load More</button>
-<div *ngIf="endOfFetchReached === true"><p>No more jokes available</p></div>
+<div *ngIf="endOfFetchReached[category]">
+  <p>No more jokes available</p>
+</div>
+
+<div *ngIf="!endOfFetchReached[category]">
+  <button ngbButton (click)="onClick()" type="button" class="btn btn-primary">Load More</button>
+</div>

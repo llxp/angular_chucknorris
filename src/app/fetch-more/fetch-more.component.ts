@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { JokeService } from '../services/joke.service';
+import { Dictionary } from '../Dictionary';
 
 @Component({
   selector: 'app-fetch-more',
@@ -8,14 +9,14 @@ import { JokeService } from '../services/joke.service';
 })
 export class FetchMoreComponent implements OnInit {
 
-  private endOfFetchReached : boolean = false;
+  private endOfFetchReached : Dictionary<boolean> = new Dictionary<boolean>();
   
   @Input()
   public category : string;
 
-  constructor(private jokeService : JokeService) { }
+  public constructor(private jokeService : JokeService) { }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.jokeService.endOfFetchReached.subscribe(
       category => this.onEndOfFetchReached(category));
   }
@@ -28,7 +29,7 @@ export class FetchMoreComponent implements OnInit {
 
   private onEndOfFetchReached(category : string) : void {
     if(this.category === category) {
-      this.endOfFetchReached = true;
+      this.endOfFetchReached[category] = true;
     }
   }
 

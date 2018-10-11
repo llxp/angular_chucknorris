@@ -12,15 +12,14 @@ export class JokeDetailComponent implements OnInit {
   @Input()
   joke : JokeContainer;
 
-  constructor(private jokeService : JokeService) { }
+  public constructor(private jokeService : JokeService) { }
 
-  ngOnInit() {
+  public ngOnInit() {
   }
 
-  onChange(event : any) : void
+  // triggered, when somebody clicks on the like button
+  private onChange(event : any) : void
   {
-    console.log("checkbox changed...");
-    console.log(this.joke);
     this.jokeService.updateLike(this.joke);
   }
 
